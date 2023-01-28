@@ -51,3 +51,60 @@ class Solution {
         return t1;
     }
 }
+
+second minimum value in a binary tree:
+
+class Solution {
+    public int findSecondMinimumValue(TreeNode root) {
+        TreeNode t=root;
+        ArrayList<Integer> arr=new ArrayList<>();
+        if(root==null){
+            return -1;
+        }
+        inorder(root,arr);
+        Collections.sort(arr);
+        ArrayList<Integer> arr1=new ArrayList<Integer>();
+        for(int i:arr){
+            if(!arr1.contains(i)){
+                arr1.add(i);
+            }
+        }
+        if(arr1.size()>1){
+          return arr1.get(1);
+        }
+        return -1;
+    }
+    public void inorder(TreeNode root, ArrayList arr){
+        if(root==null){
+            return ;
+        }
+        inorder(root.left,arr);
+        arr.add(root.val);
+        inorder(root.right,arr);
+    }
+}
+
+kth smallest element in binary search tree:
+
+class Solution {
+    public int kthSmallest(TreeNode root, int k) {
+        TreeNode t=root;
+        ArrayList<Integer> arr=new ArrayList<>();
+        if(root==null){
+            return -1;
+        }
+        inorder(root,arr);
+        if(arr.size()>=1){
+          return arr.get(k-1);
+        }
+        return -1;
+    }
+    public void inorder(TreeNode root, ArrayList arr){
+        if(root==null){
+            return ;
+        }
+        inorder(root.left,arr);
+        arr.add(root.val);
+        inorder(root.right,arr);
+    }
+}
