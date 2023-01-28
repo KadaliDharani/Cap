@@ -26,3 +26,28 @@ class Solution {
         return root;
     }
 }
+
+
+Search in a Binary Search tree:
+
+class Solution {
+    public TreeNode searchBST(TreeNode root, int val) {
+        if(root == null){
+            return root;
+        }
+        TreeNode t=root;
+        while(t!=null){
+            if(val==t.val){
+                return t;
+            }
+            else if(val<t.val){
+                t=t.left;
+            }
+            else{
+                t=t.right;
+            }
+        }
+        TreeNode t1=null;
+        return t1;
+    }
+}
