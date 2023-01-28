@@ -1,0 +1,62 @@
+
+preorder traversal:
+
+class Solution {
+    public List<Integer> preorderTraversal(TreeNode root) {
+        ArrayList<Integer> arr=new ArrayList<Integer>();
+        pOrder(root,arr);
+        return arr;
+        
+    }
+    public void pOrder(TreeNode root,ArrayList<Integer> arr){
+        if(root==null){
+            return;
+        }
+        arr.add(root.val);
+        pOrder(root.left,arr);
+        pOrder(root.right,arr);
+    }
+}
+
+
+
+post order traversal:
+
+class Solution {
+    public List<Integer> postorderTraversal(TreeNode root) {
+        ArrayList<Integer> arr=new ArrayList<Integer>();
+        pOrder(root,arr);
+        return arr;
+    }
+    public void pOrder(TreeNode root,ArrayList<Integer> arr){
+        if(root==null){
+            return;
+        }
+        pOrder(root.left,arr);
+        pOrder(root.right,arr);
+        arr.add(root.val);
+    }
+}
+
+inorder traversal:
+
+class Solution {
+    public List<Integer> inorderTraversal(TreeNode root) {
+        ArrayList<Integer> arr=new ArrayList<Integer>();
+        inOrder(root,arr);
+        return arr;
+    }
+   public void inOrder(TreeNode root, ArrayList<Integer> arr){ 
+            if(root==null){
+            return;
+        }
+        inOrder(root.left,arr);
+        arr.add(root.val);
+        inOrder(root.right,arr);
+    }
+}
+
+
+
+
+
