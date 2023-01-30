@@ -54,3 +54,31 @@ class Solution {
         return s;
     }
 }
+
+Flatten Binary Tree to Linked List:
+
+class Solution {
+    public void flatten(TreeNode root) {
+        if(root==null){
+            return;
+        }
+        ArrayList<Integer> arr=new ArrayList<Integer>();
+        flat(root,arr);
+        TreeNode r=root;
+         for(int i=1;i<arr.size();i++){
+             TreeNode root2=new TreeNode(arr.get(i));
+             r.left=null;
+             r.right=root2;
+             r=root2;
+         }
+         
+    } 
+    public void flat(TreeNode root,ArrayList<Integer> arr){
+        if(root==null){
+            return;
+        }
+         arr.add(root.val);
+         flat(root.left,arr);
+         flat(root.right,arr);
+    }
+}
