@@ -1,0 +1,88 @@
+
+left view of binary tree:
+
+class Tree
+{
+    //Function to return list containing elements of left view of binary tree.
+    ArrayList<Integer> leftView(Node root)
+    {
+      // Your code here
+      ArrayList<Integer> arr=new ArrayList<Integer>();
+      if(root==null){
+          return arr;
+      }
+      Queue<Node> q=new LinkedList<Node>();
+      q.add(root);
+      while(!q.isEmpty()){
+          int n=q.size();
+          for(int i=0;i<n;i++){
+              Node a=q.poll();
+              if(i==0){
+                  arr.add(a.data);
+              }
+              if(a.left!=null){
+                   q.add(a.left);
+              }
+              if(a.right!=null){
+                    q.add(a.right);
+              }
+          }
+          
+      }
+      return arr;
+    }
+}
+
+
+bst iterator:
+
+class BSTIterator {
+    public Stack<TreeNode> st=new Stack<TreeNode>();
+    public BSTIterator(TreeNode root) {
+        pushnode(root);
+        }
+
+    
+    public int next() {
+        TreeNode a=st.pop();
+        pushnode(a.right);
+        return a.val;
+    }
+    
+    public boolean hasNext() {
+        if(!st.isEmpty()){
+            return true;
+        }
+        return false;
+    }
+    public void pushnode(TreeNode root){
+        TreeNode root1=root;
+        while(root1!=null){
+              st.push(root1);
+              root1=root1.left;
+        }    
+    }
+}
+
+
+
+lowest common ancestor of bst:
+
+class Solution {
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if(root==null || root==p|| root==q){
+            return root;
+        }
+        TreeNode left=lowestCommonAncestor(root.left,p,q);
+        TreeNode right=lowestCommonAncestor(root.right,p,q);
+        if(left==null){
+            return right;
+        }
+        if(right==null){
+            return left;
+        }
+        else{
+            return root;
+        }
+    }
+}
