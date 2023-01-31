@@ -1,4 +1,33 @@
 
+validate binary search tree:
+
+class Solution {
+    public boolean isValidBST(TreeNode root) {
+        ArrayList<Integer> arr=new ArrayList<Integer>();
+        int flag=0;
+        iorder(root,arr);
+        for(int i=1;i<arr.size();i++){
+            if(arr.get(i-1)>=arr.get(i)){
+                flag=1;
+                break;
+            }
+        }
+        if(flag==0){
+            return true;
+        }
+        return false;
+    }
+    public void iorder(TreeNode root , ArrayList<Integer> arr){
+        if(root==null){
+            return;
+        }
+        iorder(root.left,arr);
+        arr.add(root.val);
+        iorder(root.right,arr);
+
+    }
+
+}
 
 Kth largest element of BST:
 
