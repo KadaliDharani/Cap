@@ -1,3 +1,52 @@
+find largest value in each row:
+
+class Solution {
+    public List<Integer> largestValues(TreeNode root) {
+        List<Integer> arr=new ArrayList<Integer>();
+        Queue<TreeNode> q=new LinkedList<>();
+        if(root==null){
+            return arr;
+        }
+        q.add(root);
+        while(!q.isEmpty()){
+            int n=q.size();
+            ArrayList<Integer> arr1=new ArrayList<Integer>();
+            for(int i=0;i<n;i++){
+                  TreeNode a=q.poll();
+                  arr1.add(a.val);
+                  if(a.left!=null){
+                      q.add(a.left);
+                  }
+                  if(a.right!=null){
+                      q.add(a.right);
+                  }
+            }
+            int max=arr1.get(0);
+            for(int j=1;j<arr1.size();j++){
+                if(max<arr1.get(j)){
+                    max=arr1.get(j);
+                }
+            }
+            arr.add(max);
+        }
+        return arr;
+    }
+}
+
+count complete tree nodes:
+
+class Solution {
+    int count=0;
+    public int countNodes(TreeNode root) {
+        if(root==null){
+            return 0;
+        }
+        countNodes(root.left);
+        count+=1;
+        countNodes(root.right);
+        return count;
+    }
+}
 
 validate binary search tree:
 
