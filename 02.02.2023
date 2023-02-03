@@ -1,0 +1,87 @@
+
+convert BST to greater tree :
+
+class Solution {
+    int sum=0;
+    public TreeNode convertBST(TreeNode root) {
+        TreeNode curr=root;
+         if(root==null){
+             return root;
+         }
+         revOrder(curr);
+         return root;
+    }
+    public void revOrder(TreeNode curr){
+        if(curr==null){
+            return; 
+        }
+        revOrder(curr.right);
+        curr.val=curr.val+sum;
+        sum=curr.val;
+        revOrder(curr.left);
+    }
+}
+
+All elements in 2 BSTs:
+
+class Solution {
+    public List<Integer> getAllElements(TreeNode root1, TreeNode root2) {
+        List<Integer> arr=new ArrayList<Integer>();
+        iorder(root1,arr);
+        iorder(root2,arr);
+        Collections.sort(arr);
+        return arr;
+    }
+    public void iorder(TreeNode root, List<Integer> arr){
+        if(root==null){
+            return;
+        }
+        iorder(root.left,arr);
+        arr.add(root.val);
+        iorder(root.right,arr);
+    }
+}
+
+Range sum of BST :
+class Solution {
+    int s=0;
+    public int rangeSumBST(TreeNode root, int low, int high) {
+        if(root==null){
+            return s;
+        }
+        rangeSumBST(root.left,low,high);
+        if(root.val>=low && root.val<=high){
+            s+=root.val;
+        }
+        rangeSumBST(root.right,low,high);
+        return s;
+    }
+}
+
+Minimum absolute difference in BST :
+
+class Solution {
+    public int getMinimumDifference(TreeNode root) {
+        if(root==null || (root.left==null && root.right==null)){
+            return 0;
+        }
+        ArrayList<Integer> arr=new ArrayList<Integer>();
+        iorder(root,arr);
+        int min=Integer.MAX_VALUE;
+        for(int i=1;i<arr.size();i++){
+            int b=arr.get(i)-arr.get(i-1);
+             if(min>b){
+                 min=b;
+             }
+        }
+        return min;
+    }
+    public void iorder(TreeNode root,ArrayList<Integer> arr){
+        if(root==null){
+            return;
+        }
+        iorder(root.left,arr);
+        arr.add(root.val);
+        iorder(root.right,arr);
+    }
+}
