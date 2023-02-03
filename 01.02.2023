@@ -1,0 +1,79 @@
+
+root equals sum of children:
+
+class Solution {
+    public boolean checkTree(TreeNode root) {
+        if(root.val==root.left.val + root.right.val){
+            return true;
+        }
+        return false;
+    }
+}
+
+binary tree level order traversal 2:
+
+class Solution {
+    public List<List<Integer>> levelOrderBottom(TreeNode root) {
+        List<List<Integer>> arr=new ArrayList<List<Integer>>();
+        Queue<TreeNode> q=new LinkedList<>();
+        if(root==null){
+            return arr;
+        }
+        Stack<List<Integer>> s=new Stack<List<Integer>>();
+        q.add(root);
+        while(!q.isEmpty()){
+            int n=q.size();
+            ArrayList<Integer> arr1=new ArrayList<Integer>();
+            for(int i=0;i<n;i++){
+                TreeNode a=q.poll();
+                arr1.add(a.val);
+                if(a.left!=null){
+                    q.add(a.left);
+                }
+                if(a.right!=null){
+                    q.add(a.right);
+                }
+            }
+            s.push(arr1);
+        }
+        while(!s.isEmpty()){
+            arr.add(s.pop());
+        }
+        return arr;
+    }
+}
+
+find largest value in each row:
+
+class Solution {
+    public List<Integer> largestValues(TreeNode root) {
+        List<Integer> arr=new ArrayList<Integer>();
+        Queue<TreeNode> q=new LinkedList<>();
+        if(root==null){
+            return arr;
+        }
+        q.add(root);
+        while(!q.isEmpty()){
+            int n=q.size();
+            ArrayList<Integer> arr1=new ArrayList<Integer>();
+            for(int i=0;i<n;i++){
+                  TreeNode a=q.poll();
+                  arr1.add(a.val);
+                  if(a.left!=null){
+                      q.add(a.left);
+                  }
+                  if(a.right!=null){
+                      q.add(a.right);
+                  }
+            }
+            int max=arr1.get(0);
+            for(int j=1;j<arr1.size();j++){
+                if(max<arr1.get(j)){
+                    max=arr1.get(j);
+                }
+            }
+            arr.add(max);
+        }
+        return arr;
+    }
+}
